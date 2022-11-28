@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { PureComponent } from 'react';
+import './App.scss';
+import Render from './scripts/Render';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+type IProps = {};
+type IState = {};
+
+const RenderCanvas = new Render();
+
+export default class App extends PureComponent<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
+  }
+  componentDidMount(): void {
+    RenderCanvas.init();
+  }
+  render(): React.ReactNode {
+    return(<div id={'content-app'}>
+      <canvas
+        id={'canvas-game'}
+        width={1280}
+        height={720}
+      />
+    </div>);
+  }
 }
-
-export default App;
